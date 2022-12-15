@@ -1,0 +1,26 @@
+pipeline{
+
+ agent {
+	label "maven-build-servers"
+ }
+ stages('CI CD Pipeline'){
+  stage('Code Checkout'){
+	steps{
+		script{
+			git credentialsId: 'GitHubCreds', url: 'https://github.com/anujdevopslearn/MavenBuild'
+		}
+	}
+  }
+  stage('Build & Test Automation'){
+	steps{
+		script{
+			echo "Build Automation"
+			sh """
+				ls -lart
+				mvn clean install
+			   """
+		}
+	}  
+  }  
+ }
+}
