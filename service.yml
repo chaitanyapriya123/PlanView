@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ais-service
+  labels:
+    app: ais
+spec:
+  ports:
+   - name: bootcamp-container
+     port: 8080
+     targetPort: 8080
+   - name: nginx
+     port: 80
+     targetPort: 80
+  type: NodePort
+  selector:
+    app: ais
+    tier: web
